@@ -1,0 +1,2 @@
+# txAdmin reads the recipes straight from GitHub: keep them LF.
+*.yaml text eol=lf

@@ -1,0 +1,153 @@
+# whip for a Legacy (FXServer) server: a txAdmin recipe (https://github.com/citizenfx/txAdmin/blob/master/docs/recipe.md).
+# On txAdmin's setup page choose "Remote URL Template" and paste this file's raw URL. It makes a whole new server.
+#
+# A whip release is the list of tags below: each resource is downloaded as it is at its release (a tag on its own
+# repository). whip-enhanced.yaml has the same list: change both together.
+#
+# txAdmin gives each download 150 seconds, so the largest (whip_media_clothing_female, about 145 MB) needs about
+# 10 Mbit/s from GitHub. Each download_github is one call to GitHub's API (60 an hour without a token): 17 here.
+
+$engine: 3
+$onesync: on
+$minFxVersion: 12913   # oxmysql's own minimum
+name: whip
+version: 1.0.0
+author: WHIPFX
+description: >-
+  whip, a complete server base: characters, inventory, money and banks, jobs, cars, homes, and an admin panel in game
+  (/whip). For a Legacy (FXServer) server. Downloads about 830 MB from GitHub.
+
+tasks:
+  # ---- whip ----------------------------------------------------------------------------------------------------------
+  - action: download_github
+    src: WHIPFX/whip_core
+    ref: v1.0.0
+    dest: ./resources/[whip]/whip_core
+
+  - action: download_github
+    src: WHIPFX/whip_autos
+    ref: v0.2.0
+    dest: ./resources/[whip]/whip_autos
+
+  - action: download_github
+    src: WHIPFX/whip_autos_shop
+    ref: v1.0.0
+    dest: ./resources/[whip]/whip_autos_shop
+
+  - action: download_github
+    src: WHIPFX/whip_chat
+    ref: v1.0.0
+    dest: ./resources/[whip]/whip_chat
+
+  - action: download_github
+    src: WHIPFX/whip_fuel
+    ref: v1.0.0
+    dest: ./resources/[whip]/whip_fuel
+
+  - action: download_github
+    src: WHIPFX/whip_gunny
+    ref: v2.0.0
+    dest: ./resources/[whip]/whip_gunny
+    timeoutSeconds: 900
+
+  - action: download_github
+    src: WHIPFX/whip_loadingscreen
+    ref: v1.6.2
+    dest: ./resources/[whip]/whip_loadingscreen
+
+  - action: download_github
+    src: WHIPFX/whip_phone
+    ref: v1.1.0
+    dest: ./resources/[whip]/whip_phone
+
+  - action: download_github
+    src: WHIPFX/whip_rope
+    ref: v1.0.0
+    dest: ./resources/[whip]/whip_rope
+
+  - action: download_github
+    src: WHIPFX/whip_voice
+    ref: v0.1.0
+    dest: ./resources/[whip]/whip_voice
+
+  # ---- whip's media and map packs, in [whip]/[assets] ----------------------------------------------------------------
+  - action: download_github
+    src: WHIPFX/whip_media_clothing_male
+    ref: v1.0.0
+    dest: ./resources/[whip]/[assets]/whip_media_clothing_male
+    timeoutSeconds: 900
+
+  - action: download_github
+    src: WHIPFX/whip_media_clothing_female
+    ref: v1.0.0
+    dest: ./resources/[whip]/[assets]/whip_media_clothing_female
+    timeoutSeconds: 900
+
+  - action: download_github
+    src: WHIPFX/whip_media_props
+    ref: v1.0.0
+    dest: ./resources/[whip]/[assets]/whip_media_props
+    timeoutSeconds: 900
+
+  - action: download_github
+    src: WHIPFX/whip_media_previews
+    ref: v1.0.0
+    dest: ./resources/[whip]/[assets]/whip_media_previews
+    timeoutSeconds: 900
+
+  - action: download_github
+    src: WHIPFX/whip_media_map
+    ref: v1.0.0
+    dest: ./resources/[whip]/[assets]/whip_media_map
+
+  - action: download_github
+    src: WHIPFX/whip_homes_mirrorpark
+    ref: v0.12.0
+    dest: ./resources/[whip]/[assets]/whip_homes_mirrorpark
+    timeoutSeconds: 900
+
+  - action: download_github
+    src: WHIPFX/whip_graphics
+    ref: v2.1.0
+    dest: ./resources/[whip]/[assets]/whip_graphics
+
+  # ---- oxmysql: its release build (its repository is source only) ----------------------------------------------------
+  - action: download_file
+    url: https://github.com/overextended/oxmysql/releases/download/v2.14.3/oxmysql.zip
+    path: ./tmp/oxmysql.zip
+
+  - action: unzip
+    src: ./tmp/oxmysql.zip
+    dest: ./resources/[deps]
+
+  - action: remove_path
+    path: ./tmp
+
+  # ---- The database: empty. whip makes every table itself on its first start; there is no SQL file. -------------------
+  - action: connect_database
+
+  # ---- server.cfg: txAdmin fills in the {{...}} values when the deploy finishes ----------------------------------------
+  - action: write_file
+    file: ./server.cfg
+    data: |
+      # Your whip server. Its name, description and tags are set on https://portal.cfx.re/servers
+      sv_licenseKey "{{svLicense}}"
+      sv_maxclients {{maxClients}}
+      {{serverEndpoints}}
+
+      set mysql_connection_string "{{dbConnectionString}}"
+
+      # The game build whip's car, prop and clothing lists are made for (or newer)
+      sv_enforceGameBuild 3407
+      sv_scriptHookAllowed 0
+
+      ensure oxmysql
+      ensure [whip]    # whip_core, its satellites, the media packs and the map packs
+
+      # Your own resources go below, each after whip: ensure mycafe
+
+      ## Admins: you (txAdmin's master account) are in group.admin, which gets whip's tools (/w and /whip)
+      add_ace group.admin command allow
+      add_ace group.admin command.quit deny
+      add_ace group.admin whip.devtools allow
+      {{addPrincipalsMaster}}
