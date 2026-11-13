@@ -11,7 +11,7 @@ $engine: 3
 $onesync: on
 $minFxVersion: 12913   # oxmysql's own minimum
 name: WHIP
-version: 1.0.0
+version: 1.0.1
 author: WHIPFX
 description: >-
   WHIP, a complete server base: characters, inventory, money and banks, jobs, cars, homes, and an admin panel in game
@@ -70,36 +70,37 @@ tasks:
     ref: v0.1.0
     dest: ./resources/[whip]/whip_voice
 
-  # ---- WHIP's media and map packs, in [whip]/[assets] ----------------------------------------------------------------
+  # ---- WHIP's media packs, in [whip]/[assets]/[media] ----------------------------------------------------------------
   - action: download_github
     src: WHIPFX/whip_media_clothing_male
-    ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/whip_media_clothing_male
+    ref: v1.0.1
+    dest: ./resources/[whip]/[assets]/[media]/whip_media_clothing_male
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_clothing_female
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/whip_media_clothing_female
+    dest: ./resources/[whip]/[assets]/[media]/whip_media_clothing_female
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_props
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/whip_media_props
+    dest: ./resources/[whip]/[assets]/[media]/whip_media_props
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_previews
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/whip_media_previews
+    dest: ./resources/[whip]/[assets]/[media]/whip_media_previews
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_map
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/whip_media_map
+    dest: ./resources/[whip]/[assets]/[media]/whip_media_map
 
+  # ---- WHIP's map packs, in [whip]/[assets] --------------------------------------------------------------------------
   - action: download_github
     src: WHIPFX/whip_homes_mirrorpark
     ref: v0.12.0

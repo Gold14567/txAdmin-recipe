@@ -68,7 +68,7 @@ In `resources/[whip]`:
 | [whip_voice](https://github.com/WHIPFX/whip_voice) | Voice chat on your own voice server, in 3D |
 | [whip_chat](https://github.com/WHIPFX/whip_chat), [whip_loadingscreen](https://github.com/WHIPFX/whip_loadingscreen) | Chat and the loading screen |
 
-In `resources/[whip]/[assets]`, kept out of whip_core so its updates stay small:
+In `resources/[whip]/[assets]/[media]`, kept out of whip_core so its updates stay small:
 
 | Resource | What it is |
 | --- | --- |
@@ -76,6 +76,11 @@ In `resources/[whip]/[assets]`, kept out of whip_core so its updates stay small:
 | [whip_media_props](https://github.com/WHIPFX/whip_media_props) | The furniture catalog's pictures |
 | [whip_media_previews](https://github.com/WHIPFX/whip_media_previews) | Vehicle, NPC and tattoo pictures, and the emote menu's preview videos |
 | [whip_media_map](https://github.com/WHIPFX/whip_media_map) | The pause menu's 3D map, GTA's blip icons and the HUD radar's tiles |
+
+The two map packs are in `resources/[whip]/[assets]`:
+
+| Resource | What it is |
+| --- | --- |
 | [whip_homes_mirrorpark](https://github.com/WHIPFX/whip_homes_mirrorpark) | Every Mirror Park house as a walk-in home, and 25 garages |
 | [whip_graphics](https://github.com/WHIPFX/whip_graphics) | LED streetlights and WHIP's look for the city's light and sky |
 
