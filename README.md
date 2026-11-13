@@ -1,20 +1,20 @@
-# whip: txAdmin recipe
+# WHIP: txAdmin recipe
 
 A complete base for a FiveM server. Players can make a character, carry and stash things, keep money in the bank, buy,
 fuel and tune a car, own a home and furnish it, and be hurt and revived. You run it from inside the game: `/whip`
 opens an admin panel for players, items, settings, banks, garages, shops and homes.
 
-This repository holds the txAdmin recipes that install whip. The framework itself lives in the resource repositories
+This repository holds the txAdmin recipes that install WHIP. The framework itself lives in the resource repositories
 listed [below](#whats-in-it).
 
 ## Install
 
-whip is installed as a **new server**, by txAdmin: the recipe makes the whole server (resources, database,
+WHIP is installed as a **new server**, by txAdmin: the recipe makes the whole server (resources, database,
 `server.cfg`). It is not added to a server you already have.
 
 **You need:**
 
-- FiveM's server with txAdmin: **Legacy** (`FXServer`) or **GTA V Enhanced** (`cfx-server`). whip runs on both.
+- FiveM's server with txAdmin: **Legacy** (`FXServer`) or **GTA V Enhanced** (`cfx-server`). WHIP runs on both.
 - MariaDB 10.2.3+ or MySQL 8.0.16+, and a user that may create a database.
 - About 1 GB of disk, and at least 10 Mbit/s to GitHub: txAdmin gives each download 150 seconds, and the largest is
   about 145 MB.
@@ -29,13 +29,13 @@ whip is installed as a **new server**, by txAdmin: the recipe makes the whole se
    | Enhanced | `https://raw.githubusercontent.com/WHIPFX/txAdmin-recipe/main/whip-enhanced.yaml` |
 
 2. Give it your server key (from [portal.cfx.re](https://portal.cfx.re)) and your database login. txAdmin downloads
-   whip and oxmysql, makes an empty database (whip builds every table itself, so there is no SQL file), turns OneSync
+   WHIP and oxmysql, makes an empty database (WHIP builds every table itself, so there is no SQL file), turns OneSync
    on, writes `server.cfg` and makes your txAdmin account an admin.
 3. Start the server.
 
 ### Check it works
 
-1. A few seconds after `Framework loaded successfully!` the console prints a **whip setup** block: anything marked FIX
+1. A few seconds after `Framework loaded successfully!` the console prints a **WHIP setup** block: anything marked FIX
    says what to change. Type `whipsetup` in the console to see it again.
 2. Join. Make a character, and the appearance creator opens.
 3. **F2** opens the inventory, **/w** has the quick tools and **/whip** the admin panel. Another admin: they type `/w`,
@@ -77,7 +77,7 @@ In `resources/[whip]/[assets]`, kept out of whip_core so its updates stay small:
 | [whip_media_previews](https://github.com/WHIPFX/whip_media_previews) | Vehicle, NPC and tattoo pictures, and the emote menu's preview videos |
 | [whip_media_map](https://github.com/WHIPFX/whip_media_map) | The pause menu's 3D map, GTA's blip icons and the HUD radar's tiles |
 | [whip_homes_mirrorpark](https://github.com/WHIPFX/whip_homes_mirrorpark) | Every Mirror Park house as a walk-in home, and 25 garages |
-| [whip_graphics](https://github.com/WHIPFX/whip_graphics) | LED streetlights and whip's look for the city's light and sky |
+| [whip_graphics](https://github.com/WHIPFX/whip_graphics) | LED streetlights and WHIP's look for the city's light and sky |
 
 Every resource runs on both games. Those with models carry them twice, `stream/` for Legacy and `stream_enhanced/` for
 Enhanced (which reads that instead), and an Enhanced server says so in `server.cfg` with `setr whip_platform enhanced`.
@@ -85,7 +85,7 @@ That line (and Legacy's `sv_enforceGameBuild`) is the only difference between th
 
 ## Releasing
 
-A whip release is the list of tags in the recipes. To release a resource:
+A WHIP release is the list of tags in the recipes. To release a resource:
 
 1. Bump `version` in its `fxmanifest.lua`, commit, and release that commit as `v<version>`:
    `gh release create v1.0.1 --repo WHIPFX/whip_core --target main --generate-notes`
@@ -97,4 +97,4 @@ The recipes follow txAdmin's [recipe format](https://github.com/citizenfx/txAdmi
 
 ## Licence
 
-whip's resources are under the GNU LGPL 3.0; see each repository's `LICENSE` and `NOTICE.md`.
+WHIP's resources are under the GNU LGPL 3.0; see each repository's `LICENSE` and `NOTICE.md`.

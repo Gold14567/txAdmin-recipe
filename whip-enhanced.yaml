@@ -1,7 +1,7 @@
-# whip for a GTA V Enhanced (cfx-server) server: a txAdmin recipe (https://github.com/citizenfx/txAdmin/blob/master/docs/recipe.md).
+# WHIP for a GTA V Enhanced (cfx-server) server: a txAdmin recipe (https://github.com/citizenfx/txAdmin/blob/master/docs/recipe.md).
 # On txAdmin's setup page choose "Remote URL Template" and paste this file's raw URL. It makes a whole new server.
 #
-# A whip release is the list of tags below: each resource is downloaded as it is at its release (a tag on its own
+# A WHIP release is the list of tags below: each resource is downloaded as it is at its release (a tag on its own
 # repository). whip-legacy.yaml has the same list: change both together.
 #
 # txAdmin gives each download 150 seconds, so the largest (whip_media_clothing_female, about 145 MB) needs about
@@ -9,15 +9,15 @@
 
 $engine: 3
 $onesync: on
-name: whip (Enhanced)
+name: WHIP (Enhanced)
 version: 1.0.0
 author: WHIPFX
 description: >-
-  whip, a complete server base: characters, inventory, money and banks, jobs, cars, homes, and an admin panel in game
+  WHIP, a complete server base: characters, inventory, money and banks, jobs, cars, homes, and an admin panel in game
   (/whip). For a GTA V Enhanced (cfx-server) server. Downloads about 830 MB from GitHub.
 
 tasks:
-  # ---- whip ----------------------------------------------------------------------------------------------------------
+  # ---- WHIP ----------------------------------------------------------------------------------------------------------
   - action: download_github
     src: WHIPFX/whip_core
     ref: v1.0.0
@@ -69,7 +69,7 @@ tasks:
     ref: v0.1.0
     dest: ./resources/[whip]/whip_voice
 
-  # ---- whip's media and map packs, in [whip]/[assets] ----------------------------------------------------------------
+  # ---- WHIP's media and map packs, in [whip]/[assets] ----------------------------------------------------------------
   - action: download_github
     src: WHIPFX/whip_media_clothing_male
     ref: v1.0.0
@@ -122,21 +122,21 @@ tasks:
   - action: remove_path
     path: ./tmp
 
-  # ---- The database: empty. whip makes every table itself on its first start; there is no SQL file. -------------------
+  # ---- The database: empty. WHIP makes every table itself on its first start; there is no SQL file. -------------------
   - action: connect_database
 
   # ---- server.cfg: txAdmin fills in the {{...}} values when the deploy finishes ----------------------------------------
   - action: write_file
     file: ./server.cfg
     data: |
-      # Your whip server. Its name, description and tags are set on https://portal.cfx.re/servers
+      # Your WHIP server. Its name, description and tags are set on https://portal.cfx.re/servers
       sv_licenseKey "{{svLicense}}"
       sv_maxclients {{maxClients}}
       {{serverEndpoints}}
 
       set mysql_connection_string "{{dbConnectionString}}"
 
-      # Tells whip, and the map packs, that this is GTA V Enhanced. setr, not set, so players' games get it too.
+      # Tells WHIP, and the map packs, that this is GTA V Enhanced. setr, not set, so players' games get it too.
       setr whip_platform enhanced
       # Enhanced stops a download after about two minutes; this gives a slow connection time for the media packs.
       set sv_resourceFileDownloadTimeout 600000
@@ -145,9 +145,9 @@ tasks:
       ensure oxmysql
       ensure [whip]    # whip_core, its satellites, the media packs and the map packs
 
-      # Your own resources go below, each after whip: ensure mycafe
+      # Your own resources go below, each after WHIP: ensure mycafe
 
-      ## Admins: you (txAdmin's master account) are in group.admin, which gets whip's tools (/w and /whip)
+      ## Admins: you (txAdmin's master account) are in group.admin, which gets WHIP's tools (/w and /whip)
       add_ace group.admin command allow
       add_ace group.admin command.quit deny
       add_ace group.admin whip.devtools allow
