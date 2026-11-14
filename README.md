@@ -5,7 +5,8 @@ fuel and tune a car, own a home and furnish it, and be hurt and revived. You run
 opens an admin panel for players, items, settings, banks, garages, shops and homes.
 
 This repository holds the txAdmin recipes that install WHIP. The framework itself lives in the resource repositories
-listed [below](#whats-in-it).
+listed [below](#whats-in-it). The recipes follow txAdmin's
+[recipe format](https://github.com/citizenfx/txAdmin/blob/master/docs/recipe.md).
 
 ## Install
 
@@ -93,18 +94,6 @@ oxmysql with one fix, so that a query fails at once when the database is down in
 Every resource runs on both games. Those with models carry them twice, `stream/` for Legacy and `stream_enhanced/` for
 Enhanced (which reads that instead), and an Enhanced server says so in `server.cfg` with `setr whip_platform enhanced`.
 That line (and Legacy's `sv_enforceGameBuild`) is the only difference between the two recipes.
-
-## Releasing
-
-A WHIP release is the list of tags in the recipes. To release a resource:
-
-1. Bump `version` in its `fxmanifest.lua`, commit, and release that commit as `v<version>`:
-   `gh release create v1.0.1 --repo WHIPFX/whip_core --target main --generate-notes`
-2. Change its `ref` in **both** recipes, `whip-legacy.yaml` and `whip-enhanced.yaml` (they list the same
-   resources), and bump the recipes' `version`.
-3. Push to `main`. txAdmin reads the recipes from there, so the next new server gets the new release.
-
-The recipes follow txAdmin's [recipe format](https://github.com/citizenfx/txAdmin/blob/master/docs/recipe.md).
 
 ## Licence
 
