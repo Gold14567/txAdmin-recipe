@@ -9,7 +9,7 @@
 
 $engine: 3
 $onesync: on
-$minFxVersion: 12913   # oxmysql's own minimum
+$minFxVersion: 38435   # FXServer artifact 38435 or newer (sv_enforceSteamAuth alone needs 38004)
 name: WHIP
 version: 1.0.0
 author: WHIPFX
@@ -141,6 +141,8 @@ tasks:
       # The game build WHIP's car, prop and clothing lists are made for (or newer)
       sv_enforceGameBuild 3407
       sv_scriptHookAllowed 0
+      # Players need a Steam account linked to their Cfx.re account
+      set sv_enforceSteamAuth true
 
       ensure oxmysql
       ensure whip_core

@@ -14,7 +14,8 @@ WHIP is installed as a **new server**, by txAdmin: the recipe makes the whole se
 
 **You need:**
 
-- FiveM's server with txAdmin: **Legacy** (`FXServer`) or **GTA V Enhanced** (`cfx-server`). WHIP runs on both.
+- FiveM's server with txAdmin: **Legacy** (`FXServer`, artifact 38435 or newer) or **GTA V Enhanced** (`cfx-server`).
+  WHIP runs on both.
 - MariaDB 10.2.3+ or MySQL 8.0.16+, and a user that may create a database.
 - About 1 GB of disk, and at least 10 Mbit/s to GitHub: txAdmin gives each download 150 seconds, and the largest is
   about 145 MB.
@@ -37,7 +38,8 @@ WHIP is installed as a **new server**, by txAdmin: the recipe makes the whole se
 
 1. A few seconds after `Framework loaded successfully!` the console prints a **WHIP setup** block: anything marked FIX
    says what to change. Type `whipsetup` in the console to see it again.
-2. Join. Make a character, and the appearance creator opens.
+2. Join. Your Cfx.re account needs a Steam account linked to it: the recipe turns on `sv_enforceSteamAuth`, and FiveM
+   asks players who have none to link one. Make a character, and the appearance creator opens.
 3. **F2** opens the inventory, **/w** has the quick tools and **/whip** the admin panel. Another admin: they type `/w`,
    and the console prints the `add_ace` line to add for them.
 

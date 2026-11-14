@@ -142,6 +142,8 @@ tasks:
       # Enhanced stops a download after about two minutes; this gives a slow connection time for the media packs.
       set sv_resourceFileDownloadTimeout 600000
       sv_scriptHookAllowed 0
+      # Players need a Steam account linked to their Cfx.re account
+      set sv_enforceSteamAuth true
 
       ensure oxmysql
       ensure whip_core
