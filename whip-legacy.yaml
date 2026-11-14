@@ -22,95 +22,95 @@ tasks:
   - action: download_github
     src: WHIPFX/whip_core
     ref: v1.0.0
-    dest: ./resources/[whip]/whip_core
+    dest: ./resources/whip_core
 
   - action: download_github
     src: WHIPFX/whip_autos
     ref: v0.2.0
-    dest: ./resources/[whip]/whip_autos
+    dest: ./resources/whip_autos
 
   - action: download_github
     src: WHIPFX/whip_autos_shop
     ref: v1.0.0
-    dest: ./resources/[whip]/whip_autos_shop
+    dest: ./resources/whip_autos_shop
 
   - action: download_github
     src: WHIPFX/whip_chat
     ref: v1.0.0
-    dest: ./resources/[whip]/whip_chat
+    dest: ./resources/whip_chat
 
   - action: download_github
     src: WHIPFX/whip_fuel
     ref: v1.0.0
-    dest: ./resources/[whip]/whip_fuel
+    dest: ./resources/whip_fuel
 
   - action: download_github
     src: WHIPFX/whip_gunny
     ref: v2.0.0
-    dest: ./resources/[whip]/whip_gunny
+    dest: ./resources/whip_gunny
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_loadingscreen
     ref: v1.6.2
-    dest: ./resources/[whip]/whip_loadingscreen
+    dest: ./resources/whip_loadingscreen
 
   - action: download_github
     src: WHIPFX/whip_phone
     ref: v1.1.0
-    dest: ./resources/[whip]/whip_phone
+    dest: ./resources/whip_phone
 
   - action: download_github
     src: WHIPFX/whip_rope
     ref: v1.0.0
-    dest: ./resources/[whip]/whip_rope
+    dest: ./resources/whip_rope
 
   - action: download_github
     src: WHIPFX/whip_voice
     ref: v0.1.0
-    dest: ./resources/[whip]/whip_voice
+    dest: ./resources/whip_voice
 
-  # ---- WHIP's media packs, in [whip]/[assets]/[media] ----------------------------------------------------------------
+  # ---- WHIP's media packs, in [assets]/[media] -----------------------------------------------------------------------
   - action: download_github
     src: WHIPFX/whip_media_clothing_male
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/[media]/whip_media_clothing_male
+    dest: ./resources/[assets]/[media]/whip_media_clothing_male
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_clothing_female
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/[media]/whip_media_clothing_female
+    dest: ./resources/[assets]/[media]/whip_media_clothing_female
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_props
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/[media]/whip_media_props
+    dest: ./resources/[assets]/[media]/whip_media_props
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_previews
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/[media]/whip_media_previews
+    dest: ./resources/[assets]/[media]/whip_media_previews
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_media_map
     ref: v1.0.0
-    dest: ./resources/[whip]/[assets]/[media]/whip_media_map
+    dest: ./resources/[assets]/[media]/whip_media_map
 
-  # ---- WHIP's map packs, in [whip]/[assets] --------------------------------------------------------------------------
+  # ---- WHIP's map packs, in [assets] ---------------------------------------------------------------------------------
   - action: download_github
     src: WHIPFX/whip_homes_mirrorpark
     ref: v0.12.0
-    dest: ./resources/[whip]/[assets]/whip_homes_mirrorpark
+    dest: ./resources/[assets]/whip_homes_mirrorpark
     timeoutSeconds: 900
 
   - action: download_github
     src: WHIPFX/whip_graphics
     ref: v2.1.0
-    dest: ./resources/[whip]/[assets]/whip_graphics
+    dest: ./resources/[assets]/whip_graphics
 
   # ---- oxmysql: its release build (its repository is source only) ----------------------------------------------------
   - action: download_file
@@ -119,7 +119,7 @@ tasks:
 
   - action: unzip
     src: ./tmp/oxmysql.zip
-    dest: ./resources/[deps]
+    dest: ./resources/[ox]
 
   - action: remove_path
     path: ./tmp
@@ -143,7 +143,17 @@ tasks:
       sv_scriptHookAllowed 0
 
       ensure oxmysql
-      ensure [whip]    # whip_core, its satellites, the media packs and the map packs
+      ensure whip_core
+      ensure whip_autos
+      ensure whip_autos_shop
+      ensure whip_chat
+      ensure whip_fuel
+      ensure whip_gunny
+      ensure whip_loadingscreen
+      ensure whip_phone
+      ensure whip_rope
+      ensure whip_voice
+      ensure [assets]    # the media packs and the map packs
 
       # Your own resources go below, each after WHIP: ensure mycafe
 

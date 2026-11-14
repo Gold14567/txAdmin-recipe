@@ -41,7 +41,7 @@ WHIP is installed as a **new server**, by txAdmin: the recipe makes the whole se
 3. **F2** opens the inventory, **/w** has the quick tools and **/whip** the admin panel. Another admin: they type `/w`,
    and the console prints the `add_ace` line to add for them.
 
-Next: open `resources/[whip]/whip_core/docs.html` in a browser. It works offline.
+Next: open `resources/whip_core/docs.html` in a browser. It works offline.
 
 ## Updating
 
@@ -55,7 +55,7 @@ and the engine list if you ran `/whiplashengines` (`whip_autos/engines.json`).
 
 ## What's in it
 
-In `resources/[whip]`:
+In `resources`, each started by its own `ensure` line in `server.cfg`:
 
 | Resource | What it is |
 | --- | --- |
@@ -68,7 +68,8 @@ In `resources/[whip]`:
 | [whip_voice](https://github.com/WHIPFX/whip_voice) | Voice chat on your own voice server, in 3D |
 | [whip_chat](https://github.com/WHIPFX/whip_chat), [whip_loadingscreen](https://github.com/WHIPFX/whip_loadingscreen) | Chat and the loading screen |
 
-In `resources/[whip]/[assets]/[media]`, kept out of whip_core so its updates stay small:
+In `resources/[assets]/[media]`, kept out of whip_core so its updates stay small (`ensure [assets]` starts everything
+in `[assets]`):
 
 | Resource | What it is |
 | --- | --- |
@@ -77,12 +78,14 @@ In `resources/[whip]/[assets]/[media]`, kept out of whip_core so its updates sta
 | [whip_media_previews](https://github.com/WHIPFX/whip_media_previews) | Vehicle, NPC and tattoo pictures, and the emote menu's preview videos |
 | [whip_media_map](https://github.com/WHIPFX/whip_media_map) | The pause menu's 3D map, GTA's blip icons and the HUD radar's tiles |
 
-The two map packs are in `resources/[whip]/[assets]`:
+The two map packs are in `resources/[assets]`:
 
 | Resource | What it is |
 | --- | --- |
 | [whip_homes_mirrorpark](https://github.com/WHIPFX/whip_homes_mirrorpark) | Every Mirror Park house as a walk-in home, and 25 garages |
 | [whip_graphics](https://github.com/WHIPFX/whip_graphics) | LED streetlights and WHIP's look for the city's light and sky |
+
+oxmysql, which WHIP needs for its database, is in `resources/[ox]`.
 
 Every resource runs on both games. Those with models carry them twice, `stream/` for Legacy and `stream_enhanced/` for
 Enhanced (which reads that instead), and an Enhanced server says so in `server.cfg` with `setr whip_platform enhanced`.
