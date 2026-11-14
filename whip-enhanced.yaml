@@ -111,9 +111,9 @@ tasks:
     ref: v2.1.0
     dest: ./resources/[assets]/whip_graphics
 
-  # ---- oxmysql: its release build (its repository is source only) ----------------------------------------------------
+  # ---- oxmysql: WHIPFX's fork (2.14.3 with the P-001 fix), its release build, into [ox] ------------------------------
   - action: download_file
-    url: https://github.com/overextended/oxmysql/releases/download/v2.14.3/oxmysql.zip
+    url: https://github.com/WHIPFX/oxmysql/releases/download/v2.14.3-whip.1/oxmysql.zip
     path: ./tmp/oxmysql.zip
 
   - action: unzip

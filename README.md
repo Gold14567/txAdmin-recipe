@@ -85,7 +85,8 @@ The two map packs are in `resources/[assets]`:
 | [whip_homes_mirrorpark](https://github.com/WHIPFX/whip_homes_mirrorpark) | Every Mirror Park house as a walk-in home, and 25 garages |
 | [whip_graphics](https://github.com/WHIPFX/whip_graphics) | LED streetlights and WHIP's look for the city's light and sky |
 
-oxmysql, which WHIP needs for its database, is in `resources/[ox]`.
+oxmysql, which WHIP needs for its database, is in `resources/[ox]`. It is [WHIPFX's fork](https://github.com/WHIPFX/oxmysql):
+oxmysql with one fix, so that a query fails at once when the database is down instead of waiting for ever.
 
 Every resource runs on both games. Those with models carry them twice, `stream/` for Legacy and `stream_enhanced/` for
 Enhanced (which reads that instead), and an Enhanced server says so in `server.cfg` with `setr whip_platform enhanced`.
